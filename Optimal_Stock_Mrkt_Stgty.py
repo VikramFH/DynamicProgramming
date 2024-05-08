@@ -53,7 +53,7 @@ Class BottomUp:
             # Transitions to the current day  owning stock:
             strategy_buy = cash_not_owning_share - price
             strategy_hold = cash_owning_share
-            #Tranisitions to the current_day owning the stoch
+            #Tranisitions to the current_day owning the stock
             strategic_sell =  cash_owning_share + price
             strategic_avoid = cash_not_owning_share
             #compute the new_states

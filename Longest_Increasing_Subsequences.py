@@ -1,16 +1,34 @@
-def increasing_longest_subsequnce(numbers):
 
-    if not numbers:
-        return 0
+def longest_increasing_subsequences(numbers):
 
-    longest_subsequence_at = []
+        longest_subsequences_at = []
 
-    for number in numbers:
-        best_seq = [number]
-        for seq in longest_subsequence_at:
-            if seq[-1]<number:
-                if len(seq)+1>len(best_seq):
-                    best_seq = seq + [number]
-        longest_subsequence_at.append(best_seq)
+        for number in numbers:
+            new_seq = [number]
+            for seq in longest_subsequences_at:
+                if seq[-1]<number:
+                    if len(seq)+1<len(new_seq):
+                        new_seq = seq + new_seq
 
-    return max(longest_subsequence_at,keys=len)
+            longest_subsequences_at.append(new_seq)
+
+        return max(longest_subsequences_at,key=len)
+
+#optimized nlogn using bisect_left
+
+
+import bisect
+def optimizedLIS(nums):
+
+    sub = [nums[0]]
+
+    for num in nums:
+        if sub[-1]<num:
+            sub.append(num)
+        else:
+            index_to_sort = bisect.bisect_left(sub,num)
+            sub[index_to_sort] = num
+
+    return len(sub)
+
+
